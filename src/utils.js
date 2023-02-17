@@ -1,4 +1,12 @@
 import {offerTypes, MIN_ID, MAX_ID, MIN_PRICE, MAX_PRICE} from './const.js';
+import dayjs from 'dayjs';
+
+const TIME_FORMAT = 'H:m';
+const DATE_FORMAT = 'D MMMM';
+
+export const humanizePointTime = (time) => time ? dayjs(time).format(TIME_FORMAT) : '';
+export const humanizePointDate = (date) => date ? dayjs(date).format(DATE_FORMAT) : '';
+
 
 function getRandomArrayElement(items) {
   return items[Math.floor(Math.random() * items.length)];
@@ -31,11 +39,11 @@ const getRandomArrayDestination = () => {
     const destination = {
       'id': i,
       description: 'some descr',
-      'name': 'some name',
+      'name': 'Moscow',
       'pictures': [
         {
           'src': 'http://picsum.photos/300/200?r=0.0762563005163317',
-          'description': 'Chamonix parliament building'
+          'description': 'dajwdlkajwdladaddawd'
         }
       ]
     };
@@ -51,10 +59,10 @@ const getOffersIdForEvent = () => {
   const result = new Set;
   for(let i = 0; i < offersNumber; i++) {
     const offer = allOffers[getRandomInt(0, 4)];
-    if(result.has(offer.id)) {
+    if(result.has(offer)) {
       continue;
     } else {
-      result.add(offer.id);
+      result.add(offer);
     }
   }
 
@@ -64,9 +72,9 @@ const getOffersIdForEvent = () => {
 const destinations = getRandomArrayDestination();
 
 export const getRandomPoint = () => ({
-  'base_price': getRandomInt(MIN_PRICE, MAX_PRICE),
-  'date_from': '2019-07-10T22:55:56.845Z',
-  'date_to': '2019-07-11T11:22:13.375Z',
+  'basePrice': getRandomInt(MIN_PRICE, MAX_PRICE),
+  'dateFrom': '2019-07-10T22:55:56.845Z',
+  'dateTo': '2019-07-11T11:22:13.375Z',
   'id': getRandomInt(MIN_ID, MAX_ID),
   'destination': destinations[getRandomInt(0,4)],
   'offers': getOffersIdForEvent(),
