@@ -23,9 +23,9 @@ export default class MainPresenter {
     render(new SortView, this.mainContainer);
     render(this.eventsList, this.mainContainer);
     render(new AddFormView, this.eventsList.getElement());
-    render(new EditFormView, this.eventsList.getElement());
+    render(new EditFormView({point: this.points[0]}), this.eventsList.getElement());
 
-    for(let i = 0; i < this.points.length; i++) {
+    for(let i = 1; i < this.points.length; i++) {
       console.log(this.points[i]);
       render(new PointView({point: this.points[i]}), this.eventsList.getElement());
     }
